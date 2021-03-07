@@ -39,6 +39,7 @@ vector<vector<double>> Conv::read(const string dir){
         }
         tmp.push_back(tmp_row);
     }
+    infile.close();
     return tmp;
 }
 

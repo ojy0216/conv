@@ -7,6 +7,7 @@
 using namespace std;
 
 class Conv{
+protected:
     vector<vector<double>> input;
     vector<vector<double>> input_calc;
     vector<vector<double>> kernel;
@@ -16,8 +17,8 @@ class Conv{
     int k_h, k_w;
     int o_h, o_w;
 
-    int stride_h, stride_w;
-    int pad_h, pad_w;
+    int stride_h = 1, stride_w = 1;
+    int pad_h = 0, pad_w = 0;
 
 public:
     Conv(vector<vector<double>> v);
