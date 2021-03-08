@@ -8,7 +8,8 @@
 
 using namespace std;
 
-Conv3D::Conv3D(vector<vector<vector<double>>> v, string name, int c_out){
+Conv3D::Conv3D(string curDir, vector<vector<vector<double>>> v, string name, int c_out){
+    weight_dir = curDir + "lenet\\";
     conv_name = name;
 
     input_3d = v;
@@ -16,7 +17,8 @@ Conv3D::Conv3D(vector<vector<vector<double>>> v, string name, int c_out){
     this->c_out = c_out;
 }
 
-Conv3D::Conv3D(string name, int c_in, int c_out){
+Conv3D::Conv3D(string curDir, string name, int c_in, int c_out){
+    weight_dir = curDir + "lenet\\";
     conv_name = name;
 
     this->c_in = c_in;
@@ -50,9 +52,9 @@ void Conv3D::readBias(const string dir){
 }
 
 bool Conv3D::calc_3d(bool front, bool verbose){
-    string kernel_name = "C:\\Users\\JY\\Desktop\\lenet\\" + conv_name;
+    string conv_dir_name = weight_dir + conv_name;
 
-    readKernel(kernel_name + "_weight_0_0.txt");
+    readKernel(conv_dir_name + "_weight_0_0.txt");
     if(!front){
         input_calc = input_3d[0];
         i_h = input_calc.size();
@@ -62,7 +64,7 @@ bool Conv3D::calc_3d(bool front, bool verbose){
     
     vector<vector<vector<double>>> result(c_out, vector<vector<double>>(o_h, vector<double> (o_w, 0.)));
 
-    readBias(kernel_name + "_bias.txt");
+    readBias(conv_dir_name + "_bias.txt");
 
     for(auto i = 0; i < c_out; i++){
         for(auto j = 0; j < c_in; j++){
@@ -72,7 +74,7 @@ bool Conv3D::calc_3d(bool front, bool verbose){
                 cout << "CALC 3D " << j << " " << i << endl;
             output.clear();
             kernel.clear();
-            readKernel(kernel_name + "_weight_" + to_string(j) + "_" + to_string(i) + ".txt");
+            readKernel(conv_dir_name + "_weight_" + to_string(j) + "_" + to_string(i) + ".txt");
             calc(bias_3d[i]);
             for(int dy = 0; dy < o_h; dy++){
                 for(int dx = 0; dx < o_w; dx++)

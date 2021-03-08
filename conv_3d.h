@@ -11,12 +11,13 @@ class Conv3D : public Conv{
     vector<vector<vector<double>>> output_3d;
     vector<double> bias_3d;
 
+    string weight_dir;
     string conv_name;
     int c_in, c_out;
 
 public:
-    Conv3D(vector<vector<vector<double>>> v, string name, int c_out);
-    Conv3D(string name, int c_in, int c_out);
+    Conv3D(string curDir, vector<vector<vector<double>>> v, string name, int c_out);
+    Conv3D(string curDir, string name, int c_in, int c_out);
 
     void readBias(const string dir);
 

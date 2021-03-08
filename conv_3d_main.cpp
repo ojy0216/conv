@@ -3,15 +3,19 @@
 #include "conv_3d.h"
 using namespace std;
 
-int main(){
-    Conv3D c1("conv1", 1, 6);
+int main(int argc, char* argv[]){
+    string currentDir = argv[0];
+    while(currentDir.back() != '\\')
+        currentDir.pop_back();
 
-    c1.readInput("C:\\Users\\JY\\Desktop\\test_img_7.txt");
+    Conv3D c1(currentDir, "conv1", 1, 6);
+
+    c1.readInput(currentDir + "test_img_7.txt");
 
     c1.calc_3d();
     c1.printShape();
 
-    Conv3D c2(c1.get3dOutput(), "conv2", 16);
+    Conv3D c2(currentDir, c1.get3dOutput(), "conv2", 16);
 
     c2.calc_3d(false);
     c2.printShape();
