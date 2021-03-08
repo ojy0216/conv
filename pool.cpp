@@ -69,7 +69,7 @@ void Pool::pad(){
         }
     }
 
-    vector<double> pad_row(i_w, 0.);
+    vector<double> pad_row(i_w + 2 * pad_w, 0.);
     for(auto i = 0; i < pad_h; i++){
         v_calc.insert(v_calc.begin(), pad_row);
         v_calc.push_back(pad_row);

@@ -13,7 +13,9 @@ int main(){
     c.readInput(input_file);
     c.readKernel(kernel_file);
 
-    cout << boolalpha << c.calc(1, 1, 1) << endl;
+    c.setPad({1, 2});
+
+    cout << boolalpha << c.calc() << endl;
     c.printInput();
     c.printKernel();
     c.printOutput(); 

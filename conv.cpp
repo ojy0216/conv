@@ -110,7 +110,7 @@ void Conv::pad(){
         }
     }
 
-    vector<double> pad_row(i_w, 0.);
+    vector<double> pad_row(i_w + 2 * pad_w, 0.);
     for(auto i = 0; i < pad_h; i++){
         input_calc.insert(input_calc.begin(), pad_row);
         input_calc.push_back(pad_row);
@@ -138,13 +138,7 @@ bool Conv::calcOutputSize(){
     return avail;
 }
 
-bool Conv::calc(list<int> stride, list<int> padding, double bias){
-    stride_h = stride.front();
-    stride_w = stride.back();
-
-    pad_h = padding.front();
-    pad_w = padding.back();
-
+bool Conv::calc(double bias){
     if(!calcOutputSize())
         return false;
 
@@ -166,14 +160,22 @@ bool Conv::calc(list<int> stride, list<int> padding, double bias){
     return true;
 }
 
-bool Conv::calc(int stride, int padding, double bias){
-    return calc({stride, stride}, {padding, padding}, bias);
+void Conv::setStride(int stride){
+    stride_h = stride;
+    stride_w = stride;
 }
 
-bool Conv::calc(int stride, list<int> padding, double bias){
-    return calc({stride, stride}, padding, bias);
+void Conv::setStride(list<int> stride){
+    stride_h = stride.front();
+    stride_w = stride.back();
 }
 
-bool Conv::calc(list<int> stride, int padding, double bias){
-    return calc(stride, {padding, padding}, bias);
+void Conv::setPad(int pad){
+    pad_h = pad;
+    pad_w = pad;
+}
+
+void Conv::setPad(list<int> pad){
+    pad_h = pad.front();
+    pad_w = pad.back();
 }

@@ -39,10 +39,13 @@ public:
 
     bool calcOutputSize();
 
-    bool calc(list<int> stride = {1, 1}, list<int> padding = {0, 0}, double bias = 0.);
-    bool calc(int stride, int padding, double bias = 0.);
-    bool calc(int stride, list<int> padding, double bias = 0.);
-    bool calc(list<int> stride, int padding, double bias = 0.);
+    bool calc(double bias = 0.);
+
+    void setStride(int stride);
+    void setStride(list<int> stride);
+
+    void setPad(int pad);
+    void setPad(list<int> pad);
 };
 
 #endif
