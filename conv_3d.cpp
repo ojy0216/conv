@@ -26,6 +26,11 @@ Conv3D::Conv3D(string name, int c_in, int c_out){
 void Conv3D::readBias(const string dir){
     ifstream infile(dir);
 
+    if(!infile.is_open()){
+        cout << "[File Open Error] : " << dir << endl;
+        return;
+    }
+
     while(!infile.eof()){
         string s, tok;
 

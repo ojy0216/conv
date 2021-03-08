@@ -22,6 +22,11 @@ vector<vector<double>> Conv::read(const string dir){
 
     ifstream infile(dir);
 
+    if(!infile.is_open()){
+        cout << "[File Open Error] : " << dir << endl;
+        return tmp;
+    }
+
     while(!infile.eof()){
         string s, tok;
         vector<double> tmp_row;

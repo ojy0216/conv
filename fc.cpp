@@ -21,6 +21,11 @@ vector<vector<double>> FC::read(const string dir){
 
     ifstream infile(dir);
 
+    if(!infile.is_open()){
+        cout << "[File Open Error] : " << dir << endl;
+        return tmp;
+    }
+
     while(!infile.eof()){
         string s, tok;
         vector<double> tmp_row;
@@ -38,6 +43,7 @@ vector<vector<double>> FC::read(const string dir){
         }
         tmp.push_back(tmp_row);
     }
+    infile.close();
     return tmp;
 }
 
@@ -59,6 +65,11 @@ void FC::readWeight(const string dir){
 void FC::readBias(const string dir){
     ifstream infile(dir);
 
+    if(!infile.is_open()){
+        cout << "[File Open Error] : " << dir << endl;
+        return;
+    }
+
     while(!infile.eof()){
         string s, tok;
 
@@ -74,6 +85,7 @@ void FC::readBias(const string dir){
             bias.push_back(d);
         }
     }
+    infile.close();
 }
 
 void FC::print(vector<vector<double>> v){
