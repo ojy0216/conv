@@ -21,7 +21,7 @@ public:
 
     void readBias(const string dir);
 
-    bool calc_3d(bool front = true, bool verbose = false);
+    bool calc_3d(bool front = false, bool verbose = false);
 
     vector<vector<vector<double>>> get3dOutput();
 
