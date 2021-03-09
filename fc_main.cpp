@@ -15,7 +15,7 @@ int main(){
     fc.readWeight(weight_file);
     fc.readBias(bias_file);
 
-    fc.calc();
+    fc.calc(true);
 
     fc.printInput();
     fc.printWeight();

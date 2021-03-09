@@ -9,7 +9,9 @@
 
 using namespace std;
 
-FC::FC(vector<vector<double>> v){
+FC::FC(string curDir, string name, vector<vector<double>> v){
+    weight_file = curDir + "lenet\\" + name;
+
     input = v;
 
     i_h = v.size();
@@ -158,7 +160,12 @@ vector<vector<double>> FC::getOutput(){
     return output;
 }
 
-void FC::calc(){
+void FC::calc(bool manual){
+    if(!manual){
+        readWeight(weight_file + "_weight.txt");
+        readBias(weight_file + "_bias.txt");
+    }
+
     o_h = i_h;
     o_w = wt_w;
 
