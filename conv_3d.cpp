@@ -8,7 +8,7 @@
 
 using namespace std;
 
-Conv3D::Conv3D(string curDir, vector<vector<vector<double>>> v, string name, int c_out){
+Conv3D::Conv3D(string curDir, string name, vector<vector<vector<double>>> v, int c_out){
     weight_dir = curDir + "lenet\\";
     conv_name = name;
 

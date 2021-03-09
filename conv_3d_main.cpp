@@ -15,7 +15,7 @@ int main(int argc, char* argv[]){
     c1.calc_3d();
     c1.printShape();
 
-    Conv3D c2(currentDir, c1.get3dOutput(), "conv2", 16);
+    Conv3D c2(currentDir, "conv2", c1.get3dOutput(), 16);
 
     c2.calc_3d(false);
     c2.printShape();

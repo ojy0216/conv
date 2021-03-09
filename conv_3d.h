@@ -16,7 +16,7 @@ class Conv3D : public Conv{
     int c_in, c_out;
 
 public:
-    Conv3D(string curDir, vector<vector<vector<double>>> v, string name, int c_out);
+    Conv3D(string curDir, string name, vector<vector<vector<double>>> v, int c_out);
     Conv3D(string curDir, string name, int c_in, int c_out);
 
     void readBias(const string dir);
