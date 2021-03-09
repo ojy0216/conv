@@ -60,6 +60,16 @@ void FC::readWeight(const string dir){
 
     w_h = weight.size();
     w_w = weight[0].size();
+
+    wt_h = w_w;
+    wt_w = w_h;
+
+    for(auto x = 0; x < w_w; x++){
+        vector<double> tmp;
+        for(auto y = 0; y < w_h; y++)
+            tmp.push_back(weight[y][x]);
+        weight_t.push_back(tmp);
+    }
 }
 
 void FC::readBias(const string dir){
@@ -150,7 +160,7 @@ vector<vector<double>> FC::getOutput(){
 
 void FC::calc(){
     o_h = i_h;
-    o_w = w_w;
+    o_w = wt_w;
 
     if(bias.size() != o_w){
         bias.clear();
@@ -163,7 +173,7 @@ void FC::calc(){
         for(auto j = 0; j < o_w; j++){
             double sum = 0.;
             for(auto k = 0; k < i_w; k++)
-                sum += input[i][k] * weight[k][j];
+                sum += input[i][k] * weight_t[k][j];
             o_row.push_back(sum + bias[j]);
         }
         output.push_back(o_row);

@@ -8,11 +8,13 @@ using namespace std;
 class FC{
     vector<vector<double>> input;
     vector<vector<double>> weight;
+    vector<vector<double>> weight_t;
     vector<double> bias;
     vector<vector<double>> output;
 
     int i_h, i_w;
     int w_h, w_w;
+    int wt_h, wt_w;
     int o_h, o_w;    
 
 public:
