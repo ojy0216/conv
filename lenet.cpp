@@ -73,19 +73,16 @@ void makeImage(string fileName){
 }
 
 int main(int argc, char* argv[]){
-    if(argc < 2)
+    if(argc < 3)
         return EXIT_FAILURE;
 
-    string currentDir = argv[0];
-    string targetFile = argv[1];
-
-    while(currentDir.back() != '\\')
-        currentDir.pop_back();
+    string weightDir = argv[1];
+    string targetFile = argv[2];
 
     Util u;
 
     // Conv1
-    Conv3D c1(currentDir, "conv1", 1, 6);
+    Conv3D c1(weightDir, "conv1", 1, 6);
     c1.readInput(targetFile);
     c1.setPad(2);
     c1.calc_3d(true);
@@ -100,7 +97,7 @@ int main(int argc, char* argv[]){
     cout << "Pool1 Complete!\n";
 
     // Conv2
-    Conv3D c2(currentDir, "conv2", c1_result, 16);
+    Conv3D c2(weightDir, "conv2", c1_result, 16);
     c2.calc_3d();
     auto c2_result = c2.get3dOutput();
     cout << "Conv2 Complete!\n";
@@ -116,7 +113,7 @@ int main(int argc, char* argv[]){
     auto f_c2_result = u.flatten(c2_result);
 
     // FC1
-    FC fc1(currentDir, "fc1", f_c2_result);
+    FC fc1(weightDir, "fc1", f_c2_result);
     fc1.calc();
     auto fc1_result = fc1.getOutput();
 
@@ -124,7 +121,7 @@ int main(int argc, char* argv[]){
     cout << "FC1 Complete!\n";
 
     // FC2
-    FC fc2(currentDir, "fc2", fc1_result);
+    FC fc2(weightDir, "fc2", fc1_result);
     fc2.calc();
     auto fc2_result = fc2.getOutput();
 
@@ -132,7 +129,7 @@ int main(int argc, char* argv[]){
     cout << "FC2 Complete!\n";
 
     // FC_OUT
-    FC fc3(currentDir, "fc3", fc2_result);
+    FC fc3(weightDir, "fc3", fc2_result);
     fc3.calc();
     auto fc3_result = fc3.getOutput();
 

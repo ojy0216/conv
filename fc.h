@@ -17,10 +17,10 @@ class FC{
     int wt_h, wt_w;
     int o_h, o_w;    
 
-    string weight_file;
+    string weight_dir;
 
 public:
-    FC(string curDir, string name, vector<vector<double>> v);
+    FC(string weightDir, string name, vector<vector<double>> v);
     FC(){};
 
     vector<vector<double>> read(const string dir);
