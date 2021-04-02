@@ -93,7 +93,7 @@ int main(int argc, char* argv[]){
     p1.avg_pool3D(2);
     c1_result = p1.get3dOutput();
 
-    u.v_tanh(c1_result);
+    u.v_relu(c1_result);
     cout << "Pool1 Complete!\n";
 
     // Conv2
@@ -106,7 +106,7 @@ int main(int argc, char* argv[]){
     p2.avg_pool3D(2);
     c2_result = p2.get3dOutput();
 
-    u.v_tanh(c2_result);
+    u.v_relu(c2_result);
     cout << "Pool2 Complete!\n";
 
     // Flatten
@@ -117,7 +117,7 @@ int main(int argc, char* argv[]){
     fc1.calc();
     auto fc1_result = fc1.getOutput();
 
-    u.v_tanh(fc1_result);
+    u.v_relu(fc1_result);
     cout << "FC1 Complete!\n";
 
     // FC2
@@ -125,7 +125,7 @@ int main(int argc, char* argv[]){
     fc2.calc();
     auto fc2_result = fc2.getOutput();
 
-    u.v_tanh(fc2_result);
+    u.v_relu(fc2_result);
     cout << "FC2 Complete!\n";
 
     // FC_OUT
@@ -133,7 +133,6 @@ int main(int argc, char* argv[]){
     fc3.calc();
     auto fc3_result = fc3.getOutput();
 
-    u.v_tanh(fc3_result);
     cout << "FC_OUT Complete!\n";
 
     // result
